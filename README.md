@@ -1,3 +1,8 @@
+### TaskManagerClient
+
+## this client app use REST service:  
+https://github.com/GoldenGytly777/TaskManagerRESTService
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
