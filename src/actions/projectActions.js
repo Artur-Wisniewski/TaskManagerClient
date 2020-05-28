@@ -22,11 +22,18 @@ export const getProjects = () => async dispatch => {
   })
 };
 export const getProject = (id, history) => async dispatch => {
-    const res = await axios.get(`http://localhost:8080/api/project/${id}` );
+
     //dispatch reducer with get_project
     //reducer gonna pass it to the state
-    dispatch({
-        type:GET_PROJECT,
-        payload: res.data
-    })
+    try{
+        const res = await axios.get(`http://localhost:8080/api/project/${id}` );
+        dispatch({
+            type:GET_PROJECT,
+            payload: res.data
+        })
+    }catch (e) {
+        //przekierowanie jesli nie znajdzie takiego projektu o zadanym id
+        history.push("/dashboard");
+    }
+
 };
