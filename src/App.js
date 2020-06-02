@@ -10,6 +10,7 @@ import store from "./store";
 import UpdateProject from "./components/Project/Project/UpdateProject";
 import ProjectBoard from "./components/Project/ProjectBoard/ProjectBoard";
 import AddProjectTask from "./components/Project/ProjectBoard/ProjectTask/AddProjectTask";
+import UpdateProjectTask from "./components/Project/ProjectBoard/ProjectTask/UpdateProjectTask";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
                   <Route exact path="/updateProject/:id" component={UpdateProject}/>
                   <Route exact path="/projectBoard/:id" component={ProjectBoard}/>
                   <Route exact path="/addProjectTask/:id" component={AddProjectTask}/>
-                  <Route exact path="/addProjectTask/:id/:pt" component={AddProjectTask}/>
+                  <Route exact path="/addProjectTask/:id/:pt" component={UpdateProjectTask}/>
               </div>
           </Router>
       </Provider>

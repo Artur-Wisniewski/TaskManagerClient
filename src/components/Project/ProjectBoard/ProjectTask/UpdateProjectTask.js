@@ -123,12 +123,12 @@ class UpdateProjectTask extends Component {
         );
     }
 }
-AddProjectTask.propTypes = {
+/*UpdateProjectTask.propTypes = {
     addProjectTask: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
     errors:state.errors
-});
+});*/
 //mapStateToProps
-export default connect(mapStateToProps,{addProjectTask})(AddProjectTask);
+export default (UpdateProjectTask);
