@@ -71,6 +71,7 @@ class UpdateProjectTask extends Component {
     }
     render() {
         const {id} = this.props.match.params;
+        const {errors} = this.state;
         return (
             <div className="add-PBI">
                 <div className="container">
@@ -84,11 +85,15 @@ class UpdateProjectTask extends Component {
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                     <input type="text"
-                                           className="form-control form-control-lg"
+                                           className={classnames("form-control form-control-lg ",{
+                                               "is-invalid":errors.summary
+                                           })}
                                            name="summary"
                                            placeholder="Project Task summary"
                                            onChange={this.onChange}
                                            value={this.state.summary}/>
+                                    {errors.summary && (<div className="invalid-feedback"> {errors.summary}</div>
+                                    )}
                                 </div>
                                 <div className="form-group">
                                     <textarea className="form-control form-control-lg"
