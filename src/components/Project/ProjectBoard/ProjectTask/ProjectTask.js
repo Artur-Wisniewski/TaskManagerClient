@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import classnames from "classnames"
+import {Link} from 'react-router-dom';
 class ProjectTask extends Component {
     render() {
         const {project_task} = this.props;
@@ -22,9 +23,9 @@ class ProjectTask extends Component {
                     <p className="card-text text-truncate ">
                         {project_task.acceptanceCriteria}
                     </p>
-                    <a href="#" className="btn btn-primary">
+                    <Link to={`/updateProjectTask/${project_task.projectIdentifier}/${project_task.projectSequence}`} className="btn btn-primary">
                         View / Update
-                    </a>
+                    </Link>
 
                     <button className="btn btn-danger ml-4">
                         Delete

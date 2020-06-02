@@ -31,6 +31,7 @@ class ProjectBoard extends Component {
         const {errors} = this.state;
 
         let boardContent;
+        //TODO extract this
         const boardAlgorith = (errors, project_tasks) =>{
             if(project_tasks.length < 1){
                 if(errors.projectNotFound){
