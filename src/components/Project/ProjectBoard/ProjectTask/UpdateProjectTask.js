@@ -8,14 +8,15 @@ import PropTypes from "prop-types";
 class UpdateProjectTask extends Component {
 
     render() {
+        const {id} = this.props.match.params;
         return (
             <div className="add-PBI">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <a href="#" className="btn btn-light">
+                            <Link to={`/projectBoard/${id}`} className="btn btn-light">
                                 Back to Project Board
-                            </a>
+                            </Link>
                             <h4 className="display-4 text-center">Add /Update Project Task</h4>
                             <p className="lead text-center">Project Name + Project Code</p>
                             <form onSubmit={this.onSubmit}>
