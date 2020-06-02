@@ -43,3 +43,6 @@ export const getProjectTask = (backlog_id, pt_id, history) => async dispatch => 
 
   }
 };
+export const patchProjectTask = (backlog_id, pt_id) => async dispatch => {
+
+};
