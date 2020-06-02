@@ -34,7 +34,7 @@ class ProjectBoard extends Component {
                                     <p className="card-text text-truncate ">
                                         project_task.acceptanceCriteria
                                     </p>
-                                    <a href="#" class="btn btn-primary">
+                                    <a href="#" className="btn btn-primary">
                                         View / Update
                                     </a>
 
