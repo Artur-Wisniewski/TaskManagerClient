@@ -24,7 +24,6 @@ class Backlog extends Component {
                    todo.push(tasks[i])
            }
        }
-       console.log(tasks[0]);
         return (
             <div className="container">
                 <div className="row">
