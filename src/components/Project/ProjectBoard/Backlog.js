@@ -5,18 +5,26 @@ import ProjectTask from "./ProjectTask/ProjectTask";
 class Backlog extends Component {
 
     render() {
-
-        //TODO refactor this
         const {project_tasks} = this.props;
-        const todoTasks = project_tasks.filter(project_task => project_task.status === "TO_DO").map(project_task => (
-            <ProjectTask key={project_task.id} project_task={project_task}/>
-        ));
-       const inProgressTasks = project_tasks.filter(project_task => project_task.status === "IN_PROGRESS").map(project_task => (
-           <ProjectTask key={project_task.id} project_task={project_task}/>
+       const tasks = project_tasks.map(task => (
+           <ProjectTask key={task.projectSequence} project_task={task}/>
        ));
-        const doneTasks = project_tasks.filter(project_task => project_task.status === "DONE").map(project_task => (
-            <ProjectTask key={project_task.id} project_task={project_task}/>
-        ));
+       let todo = [];
+       let inProgres = [];
+       let done = [];
+       for (let i=0; i<tasks.length; i++){
+           switch(tasks[i].props.project_task.status){
+               case "DONE":
+                   done.push(tasks[i]);
+                   break;
+               case "IN_PROGRESS":
+                   inProgres.push(tasks[i]);
+                   break;
+               default:
+                   todo.push(tasks[i])
+           }
+       }
+       console.log(tasks[0]);
         return (
             <div className="container">
                 <div className="row">
@@ -26,11 +34,7 @@ class Backlog extends Component {
                                 <h3>TO DO</h3>
                             </div>
                         </div>
-                        {todoTasks}
-
-
-
-
+                        {todo}
                     </div>
                     <div className="col-md-4">
                         <div className="card text-center mb-2">
@@ -38,8 +42,7 @@ class Backlog extends Component {
                                 <h3>In Progress</h3>
                             </div>
                         </div>
-                        {inProgressTasks}
-
+                        {inProgres}
                     </div>
                     <div className="col-md-4">
                         <div className="card text-center mb-2">
@@ -47,8 +50,7 @@ class Backlog extends Component {
                                 <h3>Done</h3>
                             </div>
                         </div>
-                        {doneTasks}
-
+                        {done}
                     </div>
                 </div>
             </div>

@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class ProjectTask extends Component {
     render() {
         const {project_task} = this.props;
-        const {key} = this.props;
+
         return (
             <div className="card mb-1 bg-light">
 
