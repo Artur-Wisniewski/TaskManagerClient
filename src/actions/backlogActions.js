@@ -9,11 +9,13 @@ export const addProjectTask = (backlog_id, project_task, history) => async dispa
            type: GET_ERRORS,
            payload: {}
         });
+
     }catch (e) {
         dispatch({
             type: GET_ERRORS,
             payload: e.response.data
         });
+
     }
 };
 export const getBacklog = backlog_id => async dispatch =>{
@@ -33,16 +35,32 @@ export const getBacklog = backlog_id => async dispatch =>{
 
 export const getProjectTask = (backlog_id, pt_id, history) => async dispatch => {
   try{
-      console.log(`/api/backlog/${backlog_id}/${pt_id}`);
+
       const res = await axios.get(`/api/backlog/${backlog_id}/${pt_id}`);
       dispatch({
           type:GET_PROJECT_TASK,
           payload: res.data
-      })
+      });
+
   } catch (e) {
-      history.push("/dashboard");
+      dispatch({
+          type: GET_ERRORS,
+          payload: e.response.data
+      });
+      history.push(`/projectBoard/${backlog_id}`);
   }
 };
-export const patchProjectTask = (backlog_id, pt_id) => async dispatch => {
+export const patchProjectTask = (backlog_id, pt_id, project_task, history) => async dispatch => {
+
+    try{
+        const res = await axios.patch(`/api/backlog/${backlog_id}/${pt_id}`, project_task);
+        history.push(`/projectBoard/${backlog_id}`);
+    }catch (e) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: e.response.data
+        });
+    }
+
 
 };

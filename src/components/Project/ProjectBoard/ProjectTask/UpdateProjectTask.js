@@ -9,6 +9,7 @@ class UpdateProjectTask extends Component {
     constructor(props) {
         super(props);
         const {id} = this.props.match.params;
+        const {pt} = this.props.match.params;
         this.state = {
             summary: "",
             acceptanceCriteria: "",
@@ -16,6 +17,7 @@ class UpdateProjectTask extends Component {
             priority: 0,
             dueDate: "",
             projectIdentifier:id,
+            projectSequence:pt,
             errors:{}
         };
         this.onChange=this.onChange.bind(this);
@@ -24,15 +26,16 @@ class UpdateProjectTask extends Component {
     onSubmit(event){
         event.preventDefault();
         const newTask = {
-
             summary: this.state.summary,
             acceptanceCriteria: this.state.acceptanceCriteria,
             status: this.state.status,
             priority: this.state.priority,
             dueDate: this.state.dueDate,
+            projectIdentifier:this.state.projectIdentifier,
+            projectSequence:this.state.projectSequence,
         };
         console.log(newTask);
-        this.props.addProjectTask(this.state.projectIdentifier, newTask, this.props.history);
+        this.props.patchProjectTask(this.state.projectIdentifier, this.state.projectSequence, newTask, this.props.history);
     }
     componentDidMount(){
         const {id} = this.props.match.params;
@@ -55,7 +58,7 @@ class UpdateProjectTask extends Component {
             priority,
             dueDate,
             projectIdentifier,
-        } = nextProps.project_task
+        } = nextProps.project_task;
         this.setState({
             summary,
             acceptanceCriteria,
