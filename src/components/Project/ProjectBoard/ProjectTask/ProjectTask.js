@@ -1,14 +1,21 @@
 import React, {Component} from 'react';
-
+import classnames from "classnames"
 class ProjectTask extends Component {
     render() {
         const {project_task} = this.props;
 
-        return (
-            <div className="card mb-1 bg-light">
 
-                <div className="card-header text-primary">
-                    ID: {project_task.projectSequence} -- Priority: {project_task.priority}
+        return (
+            <div className="card mb-1 bg-light ">
+
+                <div className={classnames("card-header text-white ",{
+                    "bg-danger": (project_task.priority === 1),
+                    "bg-success": (project_task.priority === 2),
+                    "bg-secondary": (project_task.priority === 3)
+
+                })}>
+
+                    ID: {project_task.projectSequence}
                 </div>
                 <div className="card-body bg-light">
                     <h5 className="card-title">{project_task.summary}</h5>
