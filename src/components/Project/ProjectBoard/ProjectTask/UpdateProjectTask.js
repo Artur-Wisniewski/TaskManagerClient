@@ -24,6 +24,7 @@ class UpdateProjectTask extends Component {
     onSubmit(event){
         event.preventDefault();
         const newTask = {
+
             summary: this.state.summary,
             acceptanceCriteria: this.state.acceptanceCriteria,
             status: this.state.status,
@@ -32,6 +33,11 @@ class UpdateProjectTask extends Component {
         };
         console.log(newTask);
         this.props.addProjectTask(this.state.projectIdentifier, newTask, this.props.history);
+    }
+    componentDidMount(){
+        const {id} = this.props.match.params;
+        const {pt} = this.props.match.params;
+        this.props.getProjectTask(id,pt, this.props.history);
     }
     onChange(event){
         this.setState({[event.target.name]:event.target.value})
@@ -42,6 +48,23 @@ class UpdateProjectTask extends Component {
                 errors:nextProps.errors
             })
         }
+        const {
+            summary,
+            acceptanceCriteria,
+            status,
+            priority,
+            dueDate,
+            projectIdentifier,
+        } = nextProps.project_task
+        this.setState({
+            summary,
+            acceptanceCriteria,
+            status,
+            priority,
+            dueDate,
+            projectIdentifier,
+        })
+
     }
     render() {
         const {id} = this.props.match.params;
@@ -62,14 +85,14 @@ class UpdateProjectTask extends Component {
                                            name="summary"
                                            placeholder="Project Task summary"
                                            onChange={this.onChange}
-                                           value={this.props.summary}/>
+                                           value={this.state.summary}/>
                                 </div>
                                 <div className="form-group">
                                     <textarea className="form-control form-control-lg"
                                               placeholder="Acceptance Criteria"
                                               name="acceptanceCriteria"
                                               onChange={this.onChange}
-                                              value={this.props.acceptanceCriteria}></textarea>
+                                              value={this.state.acceptanceCriteria}></textarea>
                                 </div>
                                 <h6>Due Date</h6>
                                 <div className="form-group">
@@ -77,13 +100,13 @@ class UpdateProjectTask extends Component {
                                            className="form-control form-control-lg"
                                            name="dueDate"
                                            onChange={this.onChange}
-                                           value={this.props.dueDate}/>
+                                           value={this.state.dueDate}/>
                                 </div>
                                 <div className="form-group">
                                     <select className="form-control form-control-lg"
                                             name="priority"
                                             onChange={this.onChange}
-                                            value={this.props.priority}>
+                                            value={this.state.priority}>
                                         <option value={0}>Select Priority</option>
                                         <option value={1}>High</option>
                                         <option value={2}>Medium</option>
@@ -95,7 +118,7 @@ class UpdateProjectTask extends Component {
                                     <select className="form-control form-control-lg"
                                             name="status"
                                             onChange={this.onChange}
-                                            value={this.props.status}>
+                                            value={this.state.status}>
                                         <option value="">Select Status</option>
                                         <option value="TO_DO">TO DO</option>
                                         <option value="IN_PROGRESS">IN PROGRESS</option>
@@ -114,11 +137,13 @@ class UpdateProjectTask extends Component {
 }
 UpdateProjectTask.propTypes = {
     getProjectTask: PropTypes.func.isRequired,
-    patchProjectTask: PropTypes.func.isRequired
-
+    patchProjectTask: PropTypes.func.isRequired,
+    project_task: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-    errors:state.errors
+    errors:state.errors,
+    project_task:state.backlog.project_task
 });
 
 
