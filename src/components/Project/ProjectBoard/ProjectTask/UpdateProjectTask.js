@@ -100,7 +100,8 @@ class UpdateProjectTask extends Component {
                                               placeholder="Acceptance Criteria"
                                               name="acceptanceCriteria"
                                               onChange={this.onChange}
-                                              value={this.state.acceptanceCriteria}></textarea>
+                                              value={this.state.acceptanceCriteria}>
+                                    </textarea>
                                 </div>
                                 <h6>Due Date</h6>
                                 <div className="form-group">
