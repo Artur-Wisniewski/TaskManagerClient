@@ -36,7 +36,11 @@ export const getProject = (id, history) => async dispatch => {
         dispatch({
             type:GET_PROJECT,
             payload: res.data
-        })
+        });
+        dispatch({
+            type: GET_ERRORS,
+            payload: {}
+        });
     }catch (e) {
         //przekierowanie jesli nie znajdzie takiego projektu o zadanym id
         history.push("/dashboard");
